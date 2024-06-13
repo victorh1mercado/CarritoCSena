@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.category.create');
     }
 
     /**
@@ -29,7 +29,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category= new Category();
+        $category->name=$request->input('name');
+        $category->description=$request->input('description');
+        $category->state=$request->input('state');
+        $category->save();
+        return view("dashboard.category.message",['msg'=>"Categoria creada con exito"]);
+        #return redirect()->route('dashboard.category.message')->with('msg', 'Categoria creada con exito');
     }
 
     /**
@@ -43,24 +49,32 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category=Category::find($id);
+        return view('dashboard.category.edit',['category'=>$category]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name=$request->input('name');
+        $category->description=$request->input('description');
+        $category->state=$request->input('state');
+        $category->save();
+        return view("dashboard.category.message",['msg'=>"categoria Modificada con exito"]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category=Category::find($id);
+        $category->delete();
+        return redirect("dashboard/category");
     }
 }
