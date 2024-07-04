@@ -1,5 +1,5 @@
 @extends('dashboard.master')
-@section('titulo','Poster')
+@section('titulo','Categoria')
 @include('layouts/navigation')
 @section('contenido')
 <main>

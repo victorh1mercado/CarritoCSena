@@ -25,8 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //Rutas de nuestra app
     //Route::resource('/dashboard/post',PostController::class);
-    Route::resource('/dashboard/article',ArticleController::class);
-    Route::resource('/dashboard/category',CategoryController::class);
+    Route::resource('dashboard/article',ArticleController::class);
+    Route::resource('dashboard/category',CategoryController::class);
+    Route::resource('dashboard/person',PersonController::class);
+    Route::resource('dashboard/income',IncomeController::class);
 });
 
 require __DIR__.'/auth.php';
